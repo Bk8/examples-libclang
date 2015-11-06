@@ -19,18 +19,18 @@ static size_t fileSize(const char *FileName) {
 }
 
 static const char *getTokenKindSpelling(CXTokenKind Kind) {
-  switch(Kind) {
-    case CXToken_Punctuation:
-      return "Punctuation";
-    case CXToken_Keyword:
-      return "Keyword";
-    case CXToken_Identifier:
-      return "Identifier";
-    case CXToken_Literal:
-      return "Literal";
-    case CXToken_Comment:
-      return "Comment";
-      break;
+  switch (Kind) {
+  case CXToken_Punctuation:
+    return "Punctuation";
+  case CXToken_Keyword:
+    return "Keyword";
+  case CXToken_Identifier:
+    return "Identifier";
+  case CXToken_Literal:
+    return "Literal";
+  case CXToken_Comment:
+    return "Comment";
+    break;
   }
   return "";
 }
@@ -67,7 +67,7 @@ int main(int argc, char *argv[]) {
   auto Index = clang_createIndex(0, 0);
   CXTranslationUnit TU;
   if (CXError_Success != clang_parseTranslationUnit2(
-                             Index, argv[1], nullptr, 0, nullptr, 0,
+                             Index, nullptr, argv + 1, argc - 1, nullptr, 0,
                              clang_defaultEditingTranslationUnitOptions(),
                              &TU)) {
     fprintf(stderr, "Unable to parse File");

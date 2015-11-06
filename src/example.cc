@@ -15,7 +15,7 @@ static void visitCursor(CXCursor Cursor, unsigned Level = 0) {
       Cursor,
       [](CXCursor Cursor, CXCursor parent,
          CXClientData ClientData) -> CXChildVisitResult {
-        const unsigned *const Level = static_cast<unsigned*>(ClientData);
+        const unsigned *const Level = static_cast<unsigned *>(ClientData);
         auto Kind = clang_getCursorKind(Cursor);
         auto Range = clang_getCursorExtent(Cursor);
         auto RangeEnd = clang_getRangeEnd(Range);
@@ -48,8 +48,8 @@ int main(int argc, char *argv[]) {
   auto Index = clang_createIndex(0, 0);
   CXTranslationUnit TU;
   if (CXError_Success != clang_parseTranslationUnit2(
-                             Index, argv[1], nullptr, 0, nullptr, 0,
-                             ::clang_defaultEditingTranslationUnitOptions(),
+                             Index, nullptr, argv + 1, argc - 1, nullptr, 0,
+                             clang_defaultEditingTranslationUnitOptions(),
                              &TU)) {
     fprintf(stderr, "Unable to parse File");
     clang_disposeIndex(Index);

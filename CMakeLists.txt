@@ -16,3 +16,6 @@ add_executable(example
 
 add_executable(example-tokens
   src/example-tokens.cc)
+
+add_executable(example-diagnose
+  src/example-diagnose.cc)
